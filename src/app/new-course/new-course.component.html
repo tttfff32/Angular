@@ -1,0 +1,8 @@
+<div *ngFor="let c of courses let i = index" >
+     <app-cours [coursData]="c" [num]="i+1" [myCourseList]=myCourseList (courseSelected)="addCourseToList($event)"  (courseDeleted)="deleteCourseFromList($event)"></app-cours>
+</div>
+<h1>my list:</h1>
+<div *ngFor="let cl of myCourseList">
+     <p> {{cl.name}}</p>
+</div>
+<button (click)="delete()">delete all courses</button>
