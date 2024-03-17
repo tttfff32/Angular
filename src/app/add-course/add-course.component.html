@@ -1,0 +1,25 @@
+<p>add new course:</p>
+
+<form #f="ngForm">
+    <div>
+        <label  for="courseName">Course Name:</label> 
+        <input #n  min="4" maxlength="20" [required]="true"  name="courseName" type="text" [(ngModel)]="coursData.name"  [ngClass]="validateField('courseName')">
+    </div>
+    <div>
+        <label for="courseHours">Num of Hours:</label>
+        <input name="courseHours" type="number" [(ngModel)]="coursData.hours" min="1" max="200" required="true" [ngClass]="validateField('courseHours')">
+        </div> 
+    <div>
+        <label  for="courseType">Course Type:</label>
+        <select name="courseType" [(ngModel)]="coursData.type" [ngClass]="validateField('courseType')"  required="true">
+            <option value="frontal">frontal</option>
+            <option value="maabada">maabada</option>
+            <option value="fromHome">fromHome</option>
+        </select>
+    </div>
+    <div>
+        <label  for="courseDate">Course Date:</label>
+        <input   [required]="true" name="courseDate" type="text" [(ngModel)]="coursData.date" [ngClass]="validateField('courseDate') ">
+    </div>
+    <button type="submit" (click)="save()">שמור</button>
+</form>

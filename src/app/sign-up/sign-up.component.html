@@ -1,0 +1,12 @@
+<form [formGroup]="form!" *ngIf="!afterLogin">
+    <div>
+        <label>שם משתמש</label>
+        <input type="text" formControlName="username">
+    </div>
+    <div>
+        <label>סיסמה</label>
+        <input type="password" formControlName="password">
+    </div>
+    <button type="submit" (click)="signUp()" [disabled]="!form.valid" >login</button>
+</form>
+<app-new-course *ngIf="afterLogin"  ></app-new-course>

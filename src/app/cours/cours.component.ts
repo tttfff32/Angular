@@ -10,7 +10,7 @@ import { style } from '@angular/animations';
   styleUrl: './cours.component.scss'
 })
 export class CoursComponent {
-
+  @Input()
   courses:cours[]=[
     {name:"english",hours:20,type:types.fromHome,date:'05'},
     {name:"math",hours:80,type:types.frontal,date:'09'},
@@ -49,4 +49,6 @@ export class CoursComponent {
     this.courseDeleted.emit(courseName);
      this.isCourseInList=false;
   }
+
+  
 }
