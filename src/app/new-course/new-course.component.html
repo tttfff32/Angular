@@ -1,9 +1,9 @@
-<div *ngFor="let c of courses let i = index" >
-     <app-cours   [coursData]="c" [num]="i+1" [myCourseList]=myCourseList (courseSelected)="addCourseToList($event)"  (courseDeleted)="deleteCourseFromList($event)" ></app-cours>
+<div *ngFor="let c of courseList let i = index" >
+     <app-cours   [coursData]="c" [num]="i+1"></app-cours>
 </div>
-<h1>my list:</h1>
+<h1 class="c">🩷 Courses:</h1>
 <div *ngFor="let cl of myCourseList">
-     <p> {{cl.name}}</p>
+     <p class="c"> {{cl.name}}</p>
 </div>
-<button (click)="delete()">delete all courses</button>
-<app-add-course (courseAdded)=addCourse($event)></app-add-course>
+<button (click)="delete()" class="button">delete all my 🩷 courses  </button>
+<app-add-course ></app-add-course>

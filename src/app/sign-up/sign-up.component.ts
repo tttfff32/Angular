@@ -1,5 +1,6 @@
-import { Component ,OnInit   } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, MaxLengthValidator, Validators } from '@angular/forms';
+import { UsersService } from '../Services/users.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,7 +9,7 @@ import { FormControl, FormGroup, MaxLengthValidator, Validators } from '@angular
 })
 export class SignUpComponent {
   form: FormGroup
-  constructor() {
+  constructor(private userSRV: UsersService) {
     this.form = new FormGroup(
       {
         username: new FormControl('', [Validators.required, Validators.maxLength(10)]),
@@ -16,16 +17,18 @@ export class SignUpComponent {
       }
     )
   }
-  afterLogin:boolean=false;
-addCourse(){
-  
-}
-  signUp() {
-    if (!this.form.value.username)
-      alert('username no valid😪')
-    if (this.form.valid)
-      alert('login succesful!!!')
-      this.afterLogin=true;
+  afterLogin: boolean = false;
 
+
+  signUp() {
+    if (!(this.userSRV.checkUsername(this.form.value.username)))
+      alert('username no valid😪')
+    if(!(this.userSRV.checkPassword(this.form.value.password)))
+      alert('password no valid😪')
+    else
+    {
+      alert('login succesful!!!')
+      this.afterLogin = true;
+    }
   }
 }

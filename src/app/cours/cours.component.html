@@ -1,13 +1,18 @@
-<div class="cours">
-    <p class="title">{{num}}.</p>
-    <p class="title">course  {{coursData.name}}</p>
-    <p [ngClass]="{'green':coursData.hours<30 ,'orange' : coursData.hours<60 && coursData.hours>30 ,'red' : coursData .hours>=60}"> {{coursData.hours}}</p>
-    <div [ngSwitch]="coursData.type">
+<div  class="cours">
+    <div class="title" >
+    <p>{{num}}.</p>
+    <p >course  {{coursData.name}}</p>
+</div>
+    <!-- <p [ngClass]="{'green':coursData.hours<30 ,'orange' : coursData.hours<60 && coursData.hours>30 ,'red' : coursData .hours>=60}"> {{coursData.hours}}</p> -->
+        <p class="a">{{coursData.hours}} hours in week.</p>
+    <div [ngSwitch]="coursData.type" class="a">
         <p *ngSwitchCase="getTypes().frontal">teacher miri</p>
         <p *ngSwitchCase="getTypes().maabada">teacher chani</p>
+        <p *ngSwitchCase="getTypes().fromHome">teacher ayala</p>
+
     </div>
-    <p [ngStyle]=" { 'background-color' : coursData.date=='05' ? 'red' : 'blue'}"> {{coursData.date}}</p>
+    <!-- <p [ngStyle]=" { 'background-color' : coursData.date=='05' ? 'red' : 'blue'}"> {{coursData.date}}</p> -->
     <!-- <button *ngIf="coursData.date=='05'" #a (click)="enterToTheCours()">enter to the course</button> -->    
-    <button  *ngIf="!isCourseInList"     (click)="selectCourse()"  >add this course to your list </button>
-    <button  *ngIf="isCourseInList"     (click)="deleteCourse(coursData.name)" >delete this course from your list </button>
+    <button  *ngIf="!isCourseInList"     (click)="selectCourse(coursData)"  class="button">add this course to your list </button>
+    <button  *ngIf="isCourseInList"     (click)="deleteCourse(coursData.name)" class="button" >delete this course from your list </button>
 </div>

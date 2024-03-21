@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { cours } from '../model/cours';
 import { types } from '../model/types';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-
+import {NgForm } from '@angular/forms';
+import { CourseService } from '../Services/course.service';
 @Component({
   selector: 'app-add-course',
   templateUrl: './add-course.component.html',
@@ -10,22 +10,18 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 })
 
 export class AddCourseComponent implements OnInit {
-constructor(){
+constructor(private courseSRV: CourseService){
   
 }
   coursData: cours = { name: "", hours: 0, type: types.fromHome, date: "" };
   num: number = 0;
   formLoaded: boolean = false;
-  @Output()
-  courseAdded: EventEmitter<cours> = new EventEmitter<cours>();
   ngOnInit(): void {
   }
   ngAfterViewInit() {
     this.formLoaded = true;
   }
   @ViewChild('f') f: NgForm | null = null;
-  @ViewChild('n') n: ElementRef | null = null
-
   validateField(fieldName: string) {
     if (this.formLoaded) {
       const fieldValue = this.f!.form.controls[fieldName].value;
@@ -35,14 +31,13 @@ constructor(){
     }
     return '';
   }
-  addCourse(c: cours) {
-    this.courseAdded.emit(c);
-  }
+
   save() {
     if (this.f!.valid) {
-      // this.coursData = this.f!.value;
-      this.addCourse(this.coursData);
+      this.courseSRV.courses.push(this.coursData);
       alert('course save')
+      this.coursData = { name: "", hours: 0, type: types.fromHome, date: "" };
+
     }
   }
 }
